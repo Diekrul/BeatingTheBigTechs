@@ -22,6 +22,7 @@ var mergeTwoLists = function (l1, l2) {
   } else if (!l1 && l2) {
     return l2;
   }
+
   let mergedList = new ListNode();
   const headToMergedList = mergedList;
   while (l1 && l2) {
