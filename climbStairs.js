@@ -1,41 +1,27 @@
 /**
  * @param {number} n
  * @return {number}
- * 
- * You are climbing a staircase. It takes n steps to reach the top.
-
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-
- 
-
-Example 1:
-
-Input: n = 2
-Output: 2
-Explanation: There are two ways to climb to the top.
-1. 1 step + 1 step
-2. 2 steps
-
  */
-/**
- * @param {number} n
- * @return {number}*/
-
 var climbStairs = function (n) {
-  const waysToClimb = [];
+  const cache = new Map();
+  const getSteps = (sum) => {
+    if (cache.has(sum)) {
+      return cache.get(sum);
+    }
+    if (sum > n) {
+      return 0;
+    }
+    if (sum === n) {
+      return 1;
+    }
 
-  const calculateWays = (acumSteps, steps) => {
-    if (acumSteps <= 0) return;
-    if (acumSteps - 1 > 0) {
-      waysToClimb.push(1);
-      calculateWays(acumSteps - 1, steps);
+    let steps = 0;
+    for (let i = 1; i <= 2; i++) {
+      let localSum = sum + i;
+      steps = steps + getSteps(localSum);
     }
-    if (acumSteps - 2 > 0) {
-      waysToClimb.push(2);
-      calculateWays(acumSteps - 2, steps);
-    }
+    cache.set(sum, steps);
+    return steps;
   };
-
-  calculateWays(n);
-  console.log(waysToClimb);
+  return getSteps(0);
 };
