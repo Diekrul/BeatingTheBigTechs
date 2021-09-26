@@ -1,12 +1,12 @@
 function teamBicycleRiding(redShirtSpeeds, blueShirtSpeeds, fastest) {
+  /*
+    findMaxTotalSpeed():
+    To get the maximum total speed we want to match the slowest person with the fastest person.
+    With that, we get the maximum difference between speeds and get the max possible speed.
+    For this we can sort the arrays in different directions (from min to max, and from max to min)
+    and get the max between speeds. 
+    */
   const findMaxTotalSpeed = () => {
-    /*
-        To get the maximum total speed we want to match the slowest person with the fastest person.
-        With that, we get the maximum difference between speeds and get the max possible speed.
-
-        For this we can sort the arrays in different directions (from min to max, and from max to min)
-        and get the max between speeds. 
-        */
     redShirtSpeeds.sort((a, b) => a - b);
     blueShirtSpeeds.sort((a, b) => b - a);
     let totalMaxSpeed = 0;
@@ -17,12 +17,13 @@ function teamBicycleRiding(redShirtSpeeds, blueShirtSpeeds, fastest) {
     return totalMaxSpeed;
   };
 
+  /*
+    findMinTotalSpeed():
+    To get the min total speed we want to match the speeds to try to reduce the difference as much as possible.
+    For this we can sort the arrays in the same direction (both arrays from min to max)
+    and get the max of the speed to get the minimum difference. 
+    */
   const findMinTotalSpeed = () => {
-    /*
-        To get the min total speed we want to match the speeds to try to reduce the difference as much as possible.
-        For this we can sort the arrays in the same direction (both arrays from min to max)
-        and get the max of the speed to get the minimum difference. 
-        */
     redShirtSpeeds.sort((a, b) => a - b);
     blueShirtSpeeds.sort((a, b) => a - b);
     let totalMinSpeed = 0;
