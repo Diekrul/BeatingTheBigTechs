@@ -8,7 +8,7 @@ var coinChange = function (coins, amount) {
 
   const calculate = (amountLeft) => {
     if (cache.has(amountLeft)) {
-      //If we have how many coins if the minimum for the current amounLeft
+      //If we have how many coins if the minimum for the current amountLeft
       //We can return that value to not calculate that again
       return cache.get(amountLeft);
     }
@@ -18,7 +18,7 @@ var coinChange = function (coins, amount) {
       return 0;
     }
     if (amountLeft < 0) {
-      //If is < 0, we use bigger coins that we need.
+      //If is < 0, we used bigger coins that we need.
       return -1;
     }
 
@@ -36,7 +36,7 @@ var coinChange = function (coins, amount) {
     cache.set(amountLeft, result);
     return result;
   };
-  const finalResult = calculate(amount);
 
+  const finalResult = calculate(amount);
   return finalResult === Number.POSITIVE_INFINITY ? -1 : finalResult;
 };
