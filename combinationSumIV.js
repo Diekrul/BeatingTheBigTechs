@@ -6,21 +6,21 @@
 var combinationSum4 = function (nums, target) {
   const cache = new Map();
 
-  const getCombination = (nums, currentSum) => {
-    if (cache.has(currentSum)) return cache.get(currentSum);
-    if (currentSum > target) {
-      return 0;
-    }
-    if (target === currentSum) {
+  const getCombination = (currentTarget) => {
+    if (cache.has(currentTarget)) return cache.get(currentTarget);
+    if (currentTarget === 0) {
       return 1;
     }
-    let paths = 0;
+
+    let result = 0;
     for (let i = 0; i < nums.length; i++) {
-      let sum = currentSum + nums[i];
-      paths = paths + getCombination(nums, sum);
+      let toFind = currentTarget - nums[i];
+      if (toFind >= 0) {
+        result = result + getCombination(toFind);
+      }
     }
-    cache.set(currentSum, paths);
-    return paths;
+    cache.set(currentTarget, result);
+    return result;
   };
-  return getCombination(nums, 0);
+  return getCombination(target);
 };
